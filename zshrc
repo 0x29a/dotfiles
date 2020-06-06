@@ -102,6 +102,7 @@ alias dck=docker-compose
 alias e="exa --long --all"
 alias b=bat
 alias c="code ."
+alias p="ipython"
 
 alias soft="cd ~/Soft"
 alias proj="cd ~/Projects"
@@ -110,6 +111,34 @@ alias test="deactivate && cd ~/Projects/Test && . .fenv/bin/activate"
 alias s=sudo
 alias dem="ssh demid@cloud"
 alias zshconfig="nano ~/.dotfiles/zshrc"
+alias cloud_tunnel="ssh -N \
+-L 1976:127.0.0.1:1976 \
+-L 18734:127.0.0.1:18734 \
+-L 18010:127.0.0.1:18010 \
+-L 19877:127.0.0.1:19877 \
+-L 18735:127.0.0.1:18735 \
+-L 18130:127.0.0.1:18130 \
+-L 18400:127.0.0.1:18400 \
+-L 1994:127.0.0.1:1994 \
+-L 18150:127.0.0.1:18150 \
+-L 18000:127.0.0.1:18000 \
+-L 19876:127.0.0.1:19876 \
+-L 18120:127.0.0.1:18120 \
+-L 18381:127.0.0.1:18381 \
+-L 44567:127.0.0.1:44567 \
+-L 3141:127.0.0.1:3141 \
+-L 15900:127.0.0.1:15900 \
+-L 25900:127.0.0.1:25900 \
+-L 3506:127.0.0.1:3506 \
+demid@cloud"
+
+cp_in_cloud() {
+  scp -r $1 demid@cloud:$2
+}
+
+cp_out_cloud() {
+  scp -r demid@cloud:$1 $2
+}
 
 # #############################################
 # pyenv setup #################################
