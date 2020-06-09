@@ -130,6 +130,11 @@ alias cloud_tunnel="ssh -N \
 -L 15900:127.0.0.1:15900 \
 -L 25900:127.0.0.1:25900 \
 -L 3506:127.0.0.1:3506 \
+-L 2001:127.0.0.1:2001 \
+-L 5000:127.0.0.1:5000 \
+-L 3000:127.0.0.1:3000 \
+-L 8888:127.0.0.1:8888 \
+-L 5432:127.0.0.1:5432 \
 demid@cloud"
 
 cp_in_cloud() {
@@ -155,5 +160,5 @@ fi
 
 # Depends on development mode. If I use workstation as a thin client to
 # cloud, I use ssh, if not, ssh command should be replaced with screenfetch
-screenfetch
-#ssh demid@cloud
+#screenfetch
+ssh demid@cloud
