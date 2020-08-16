@@ -103,6 +103,7 @@ alias e="exa --long --all"
 alias b=bat
 alias c="code ."
 alias p="ipython"
+alias td="todoist_linux_amd64 add"
 
 alias soft="cd ~/Soft"
 alias proj="cd ~/Projects"
@@ -135,6 +136,7 @@ alias cloud_tunnel="ssh -N \
 -L 3000:127.0.0.1:3000 \
 -L 8888:127.0.0.1:8888 \
 -L 5432:127.0.0.1:5432 \
+-L 2000:127.0.0.1:2000 \
 demid@cloud"
 
 cp_in_cloud() {
