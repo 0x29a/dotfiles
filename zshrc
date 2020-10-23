@@ -112,7 +112,7 @@ alias test="deactivate && cd ~/Projects/Test && . .fenv/bin/activate"
 alias s=sudo
 alias dem="ssh demid@cloud"
 alias zshconfig="nano ~/.dotfiles/zshrc"
-alias cloud_tunnel="ssh -N \
+alias cloud_tunnel="autossh -N \
 -L 1976:127.0.0.1:1976 \
 -L 18734:127.0.0.1:18734 \
 -L 18010:127.0.0.1:18010 \
