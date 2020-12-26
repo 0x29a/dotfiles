@@ -137,6 +137,7 @@ alias cloud_tunnel="autossh -N \
 -L 8888:127.0.0.1:8888 \
 -L 5432:127.0.0.1:5432 \
 -L 2000:127.0.0.1:2000 \
+-L 2222:127.0.0.1:2222 \
 -L 2002:127.0.0.1:2002 \
 -L 8000:127.0.0.1:8000 \
 -L 8080:127.0.0.1:8080 \
@@ -160,9 +161,13 @@ alias cloud_tunnel="autossh -N \
 -L 5900:127.0.0.1:5900 \
 -L 4567:127.0.0.1:4567 \
 -L 27017:127.0.0.1:27017 \
+-L 9090:127.0.0.1:9090 \
+-L 9999:127.0.0.1:9999 \
 demid@cloud"
 
 alias fenv="virtualenv -p python3 .fenv"
+
+alias log_time="(cd $HOME/Soft/toggl-tempo-worklog-transfer && $HOME/Soft/toggl-tempo-worklog-transfer/.fenv/bin/python $HOME/Soft/toggl-tempo-worklog-transfer/sync_timelogs.py)"
 
 cp_in_cloud() {
   scp -r $1 demid@cloud:$2
@@ -183,10 +188,18 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv virtualenv-init -)"
 fi
 
+
+# #############################################
+# launch cloud tunnel  ########################
+
+if ! screen -list | grep -q "cloud_tunnel"; then
+    screen -dmS cloud_tunnel
+    screen -S cloud_tunnel -X stuff 'cloud_tunnel\n'
+fi
+
 # #############################################
 # Entrypoint ##################################
 
 # Depends on development mode. If I use workstation as a thin client to
 # cloud, I use ssh, if not, ssh command should be replaced with screenfetch
-#screenfetch
-ssh demid@cloud
+neofetch
