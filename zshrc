@@ -107,7 +107,6 @@ alias td="todoist_linux_amd64 add"
 
 alias soft="cd ~/Soft"
 alias proj="cd ~/Projects"
-alias test="deactivate && cd ~/Projects/Test && . .fenv/bin/activate"
 
 alias s=sudo
 alias dem="ssh demid@cloud"
@@ -165,8 +164,6 @@ alias cloud_tunnel="autossh -N \
 -L 9999:127.0.0.1:9999 \
 demid@cloud"
 
-alias fenv="virtualenv -p python3 .fenv"
-
 alias log_time="(cd $HOME/Soft/toggl-tempo-worklog-transfer && $HOME/Soft/toggl-tempo-worklog-transfer/.fenv/bin/python $HOME/Soft/toggl-tempo-worklog-transfer/sync_timelogs.py)"
 
 cp_in_cloud() {
@@ -175,6 +172,16 @@ cp_in_cloud() {
 
 cp_from_cloud() {
   scp -r demid@cloud:$1 $2
+}
+
+fenv() {
+  if [ -d ".fenv" ]
+  then
+    source .fenv/bin/activate
+  else
+    virtualenv -p python3 .fenv
+    source .fenv/bin/activate
+  fi
 }
 
 # #############################################
@@ -192,9 +199,9 @@ fi
 # #############################################
 # launch cloud tunnel  ########################
 
-if ! screen -list | grep -q "cloud_tunnel"; then
-    screen -dmS cloud_tunnel
-    screen -S cloud_tunnel -X stuff 'cloud_tunnel\n'
+if ! screen -list | grep -q "cloud_tunnel_j3kVxaXKxH"; then
+    screen -dmS cloud_tunnel_j3kVxaXKxH
+    screen -S cloud_tunnel_j3kVxaXKxH -X stuff 'cloud_tunnel\n'
 fi
 
 # #############################################
