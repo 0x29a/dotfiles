@@ -44,6 +44,8 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+DISABLE_UPDATE_PROMPT=true
+
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -116,6 +118,7 @@ alias b=bat
 alias c="code ."
 alias p="ipython"
 alias db="code ~/Dropbox/PersonalDatabase/"
+alias upd="sudo apt update && sudo apt list --upgradable && sudo apt upgrade -y"
 
 alias soft="cd ~/Soft"
 alias proj="cd ~/Projects"
@@ -184,6 +187,14 @@ cp_in_cloud() {
 
 cp_from_cloud() {
   scp -r demid@cloud:$1 $2
+}
+
+random_password_special() {
+  tr -dc 'A-Za-z0-9!"#$%&'\''()*+,-./:;<=>?@[\]^_`{|}~' </dev/urandom | head -c $1  ; echo
+}
+
+random_password() {
+  tr -dc A-Za-z0-9 </dev/urandom | head -c $1 ; echo ''
 }
 
 fenv() {
